@@ -9,7 +9,7 @@ body{
 }
 
 .calc-div{
-    background-color: hsl(222, 26%, 31%);
+    transition: 300ms;
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -18,7 +18,6 @@ body{
 
 .calc-container{
     min-width: 37%;
-    max-width: 50%;
 }
 
 .section-one{
@@ -26,7 +25,7 @@ body{
     justify-content: space-between;
     align-items: center;
     color: white;
-    /* border: 2px solid white; */
+    transition: 300ms;
 }
 
 .section-one-text{
@@ -54,7 +53,7 @@ body{
 
 .selector{
     height: 24px;
-    background-color: hsl(223, 31%, 20%);
+    transition: 300ms;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -64,51 +63,60 @@ body{
 }
 
 .selector-item{
-    background-color: hsl(6, 63%, 50%);
+    transition: 300ms;
     height: 15px;
     width: 15px;
     border-radius: 50%;
 }
 
+.selector-item:hover{
+    cursor: pointer;
+}
+
 .section-two{
     margin-top: 40px;
     height: 100px;
-    background-color: hsl(224, 36%, 15%);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    color: white;
-    font-size: 2.6em;
     padding-right: 25px;
     overflow: hidden;
+    transition: 300ms;
+}
+
+.section-two p{
+    margin: 0;
+    padding: 0;
 }
 
 .section-three{
-    background-color: hsl(223, 31%, 20%);
     padding: 25px;
     margin-top: 15px;
     border-radius: 10px;
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 25px;
+    transition: 300ms;
 }
 
 .numbers{
-    padding: 15px 0px;
-    min-width: 50px;
-    background-color: hsl(30, 25%, 89%);
+    padding: 13px 0px;
+    min-width: 45px;
+    /* background-color: hsl(30, 25%, 89%); */
+    transition: 300ms;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 2em;
-    color: hsl(221, 14%, 31%);
+    /* color: hsl(221, 14%, 31%); */
     border-radius: 10px;
     box-shadow: 0px 3px;
 }
 
 .numbers:hover{
-    background-color: white;
+    filter: brightness(150%);
+    cursor: pointer;
 }
 
 .reset{
@@ -123,10 +131,6 @@ body{
     background-color: hsl(6, 63%, 50%);
     box-shadow: 0px 3px hsl(6, 70%, 34%);
     color: white;
-}
-
-.eq:hover{
-    background-color: hsl(6, 54%, 60%);
 }
 
 .del{
