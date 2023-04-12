@@ -156,7 +156,7 @@ function Calc() {
                     <div className="numbers" style={keyStyles} onClick={() => handleCalculate("*")}>x</div>
 
                     <div className="numbers reset" style={deleteStyles} onClick={() => {setValue(""); setCalculate({val: null, operator: null})}}>reset</div>
-                    <div className="numbers eq" style={eqStyle} onClick={() => handleCalculate("=")}>=</div>
+                    <div className="numbers eq" style={eqStyle} onClick={() => handleCalculate("")}>=</div>
                 </div>
             </div>
         </div>
