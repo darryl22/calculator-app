@@ -4,6 +4,10 @@ function Calc() {
 
     const [value, setValue] = React.useState("")
     const [theme, setTheme] = React.useState(1)
+    const [calculate, setCalculate] = React.useState({
+        val: null,
+        operator: null
+    })
 
     React.useEffect(() => {
         document.addEventListener('keydown', keyPress, true)
@@ -57,9 +61,49 @@ function Calc() {
 
     function deleteValue() {
         setValue(prev => {
-            let newval = prev.slice(0, -1)
+            let newval = prev.toString().slice(0, -1)
             return newval
         })
+    }
+
+    function handleCalculate(opr) {
+        if (calculate.val === null){
+            setCalculate({
+                val: parseFloat(value),
+                operator: opr
+            })
+            setValue("")
+        }else{
+            setCalculate(prev => {
+                return {...prev, operator: opr}}
+            )
+            if (calculate.operator === "+") {
+                let result = calculate.val + parseFloat(value)
+                setCalculate(prev => {
+                    return {operator: null, val: result}
+                })
+                setValue("")
+            }else if (calculate.operator === "-") {
+                let result = calculate.val - parseFloat(value)
+                setCalculate(prev => {
+                    return {operator: null, val: result}
+                })
+                setValue("")
+            } else if (calculate.operator === "*") {
+                let result = calculate.val * parseFloat(value)
+                setCalculate(prev => {
+                    return {operator: null, val: result}
+                })
+                setValue("")
+            } else if (calculate.operator === "/") {
+                let result = calculate.val / parseFloat(value)
+                setCalculate(prev => {
+                    return {operator: null, val: result}
+                })
+                setValue("")
+            }
+        }
+        
     }
 
     return(
@@ -86,7 +130,7 @@ function Calc() {
                 </div>
                 <div className="section-two" style={screenStyle}>
                     <div>
-                        <p style={{fontSize: "0.7em"}}>result</p>
+                        {calculate.val != null &&  <p style={{fontSize: "0.7em"}}>{calculate.val} {calculate.operator}</p>}
                         <p>{value}</p>
                     </div>
                 </div>
@@ -99,20 +143,20 @@ function Calc() {
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("4")}>4</div>
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("5")}>5</div>
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("6")}>6</div>
-                    <div className="numbers" style={keyStyles}>+</div>
+                    <div className="numbers" style={keyStyles} onClick={() => handleCalculate("+")}>+</div>
 
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("1")}>1</div>
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("2")}>2</div>
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("3")}>3</div>
-                    <div className="numbers" style={keyStyles}>-</div>
+                    <div className="numbers" style={keyStyles} onClick={() => handleCalculate("-")}>-</div>
 
                     <div className="numbers" style={keyStyles} onClick={() => updateValue(".")}>.</div>
                     <div className="numbers" style={keyStyles} onClick={() => updateValue("0")}>0</div>
-                    <div className="numbers" style={keyStyles}>/</div>
-                    <div className="numbers" style={keyStyles}>x</div>
+                    <div className="numbers" style={keyStyles} onClick={() => handleCalculate("/")}>/</div>
+                    <div className="numbers" style={keyStyles} onClick={() => handleCalculate("*")}>x</div>
 
-                    <div className="numbers reset" style={deleteStyles} onClick={() => setValue("")}>reset</div>
-                    <div className="numbers eq" style={eqStyle}>=</div>
+                    <div className="numbers reset" style={deleteStyles} onClick={() => {setValue(""); setCalculate({val: null, operator: null})}}>reset</div>
+                    <div className="numbers eq" style={eqStyle} onClick={() => handleCalculate("=")}>=</div>
                 </div>
             </div>
         </div>
